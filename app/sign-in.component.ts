@@ -16,4 +16,9 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  doSignIn(): void {
+    let link = ['/', 'dashboard'];
+    this.router.navigate(link);
+  }
 }
