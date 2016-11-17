@@ -1,0 +1,12 @@
+<h3>Dashboard</h3>
+<div class="grid grid-pad">
+  <div *ngFor="let item of dashboardItems" class="col-1-4">
+    <div class="dashboard module">
+      <h4>{{item.title}}</h4>
+      <p>{{item.description}}</p>
+      <div *ngFor="let action of item.actions" class="actions">
+        <button (click)="gotoItem(action.url)">{{action.label}}</button>
+      </div>
+    </div>
+  </div>
+</div>
