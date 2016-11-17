@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   moduleId: module.id,
@@ -7,18 +8,19 @@ import { Router } from '@angular/router';
   templateUrl: 'sign-in.component.html',
   styleUrls: ['sign-in.component.css']
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent {
 
   constructor(
-    private router: Router) {
+    public authService: AuthService,
+    public router: Router) {
   }
 
-  ngOnInit(): void {
-
-  }
-
-  doSignIn(): void {
-    let link = ['/', 'dashboard'];
-    this.router.navigate(link);
+  signin(): void {
+    this.authService.login().subscribe(() => {
+      if (this.authService.isLoggedIn) {
+        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/dashboard';
+        this.router.navigate([redirect]);
+      }
+    });
   }
 }

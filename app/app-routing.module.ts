@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuard } from './auth-guard.service';
+
 import { DashboardComponent } from './dashboard.component';
-import { HeroesComponent } from './heroes.component';
-import { HeroDetailComponent } from './hero-detail.component';
-import { MailForwarderComponent } from './mail-forwarder.component';
+import { ForwardMailComponent } from './dashboard/forward-mail.component';
 import { SignInComponent } from './sign-in.component';
-import { UpdateAccountsComponent } from './update-accounts.component';
+import { UpdateAccountsComponent } from './dashboard/update-accounts.component';
 
 const routes: Routes = [
   {
@@ -16,23 +16,16 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
-  },
-  {
-    path: 'detail/:id',
-    component: HeroDetailComponent
-  },
-  {
-    path: 'heroes',
-    component: HeroesComponent
-  },
-  {
-    path: 'mail-forwarder',
-    component: MailForwarderComponent
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'sign-in',
     component: SignInComponent
+  },
+  {
+    path: 'forward-mail',
+    component: ForwardMailComponent
   },
   {
     path: 'update-accounts',
@@ -48,9 +41,7 @@ export class AppRoutingModule { }
 
 export const routedComponents = [
   DashboardComponent,
-  HeroesComponent,
-  HeroDetailComponent,
-  MailForwarderComponent,
+  ForwardMailComponent,
   SignInComponent,
   UpdateAccountsComponent
 ];

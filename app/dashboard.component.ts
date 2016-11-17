@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DashboardItemComponent } from './dashboard-item.component';
+
+import { ForwardMailComponent } from './dashboard/forward-mail.component'
 
 @Component({
   moduleId: module.id,
@@ -8,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  dashboardItems: []
+  dashboardItems: [{}]
 
   constructor(
     private router: Router) {
@@ -21,7 +24,7 @@ export class DashboardComponent implements OnInit {
         title: 'Forward Mail',
         description: "File your official USPS mail forwarding form - it's 100% secure.",
         actions: [
-          { label: "Let's Do it", url: 'mail-forwarder' }
+          { label: "Let's Do it", url: 'forward-mail' }
         ]
       },
       {
@@ -35,7 +38,7 @@ export class DashboardComponent implements OnInit {
     ]
   }
 
-  gotoItem(url): void {
+  gotoItem(url: string): void {
     let link = ['/', url];
     this.router.navigate(link);
   }
